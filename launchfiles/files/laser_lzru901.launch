@@ -1,0 +1,9 @@
+<launch>
+
+  <node pkg="lzr_u901_node" type="lzr_u901_node" name="lzru901laser">
+    <!--<param name="ip_address" value="192.168.0.10"/>-->
+    <param name="frame_id" value="/laser_lzru901_link" />
+    <remap from="scan" to="layeredscan" />
+  </node>
+
+</launch>
