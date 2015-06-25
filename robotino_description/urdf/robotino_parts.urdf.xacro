@@ -2,7 +2,8 @@
 <robot xmlns:xacro="http://wiki.ros.org/xacro">
     <xacro:property name="M_PI" value="3.14159"/>
     <xacro:property name="M_SCALE" value="0.01"/>
-    <xacro:property name="PLATFORM_HEIGHT" value="0.59"/>
+    <xacro:property name="V3_SCALE" value="1"/>
+    <xacro:property name="POLE_HEIGHT" value="0.59"/>
     <xacro:property name="PLATFORM_RADIUS" value="0.225"/>
     <!-- wheel -->
     <xacro:macro name="wheel" params="parent name *origin *axis">
@@ -59,8 +60,8 @@
             <child link="${name}_link"/>
         </joint>
     </xacro:macro>
-    <!-- angle bracket with USB hub -->
-    <xacro:macro name="anglebracketusb" params="parent name *origin">
+    <!-- pole -->
+    <xacro:macro name="pole" params="parent name *origin">
         <link name="${name}_link">
             <inertial>
                 <mass value="0.00001"/>
@@ -68,11 +69,18 @@
                 <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
             </inertial>
             <visual>
-                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <origin xyz="0 0 0"/>
                 <geometry>
-                    <mesh filename="package://robotino_description/meshes/parts/angle_bracket_usb_hub.dae" scale="${M_SCALE} ${M_SCALE} ${M_SCALE}"/>
+                    <!--<cylinder radius="0.04" length="${POLE_HEIGHT}"/>-->
+			<mesh filename="package://robotino_description/meshes/parts/robotino_v3_pole.dae" scale="${V3_SCALE} ${V3_SCALE} ${V3_SCALE}"/>
                 </geometry>
             </visual>
+            <collision>
+                <origin xyz="0 0 ${POLE_HEIGHT/2}"/>
+                <geometry>
+                    <cylinder radius="0.04" length="${POLE_HEIGHT}"/>
+                </geometry>
+            </collision>
         </link>
         <joint name="${name}_joint" type="fixed">
             <insert_block name="origin"/>
@@ -80,6 +88,7 @@
             <child link="${name}_link"/>
         </joint>
     </xacro:macro>
+    
     <!-- platform -->
     <xacro:macro name="platform" params="parent name *origin">
         <link name="${name}_link">
@@ -89,16 +98,10 @@
                 <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
             </inertial>
             <visual>
-                <origin xyz="0 0 ${PLATFORM_HEIGHT/2}"/>
+                <origin xyz="0 0 0"/>
                 <geometry>
-                    <cylinder radius="0.04" length="${PLATFORM_HEIGHT}"/>
-                </geometry>
-            </visual>
-            <visual>
-                <origin xyz="0 0 ${PLATFORM_HEIGHT}"/>
-                <geometry>
-                    <!-- actual length = 0.015 -->
-                    <cylinder radius="${PLATFORM_RADIUS}" length="0.02"/>
+                    <!--<cylinder radius="0.04" length="${POLE_HEIGHT}"/>-->
+			<mesh filename="package://robotino_description/meshes/parts/robotino_v3_plate.dae" scale="${V3_SCALE} ${V3_SCALE} ${V3_SCALE}"/>
                 </geometry>
             </visual>
         </link>

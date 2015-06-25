@@ -9,28 +9,55 @@
   
   <robotino_body/>
 
-  <!-- add platform -->
-    <platform name="platform" parent="base_link">
+  <!-- add pole -->
+    <pole name="pole" parent="base_link">
         <origin xyz="0.0 0.0 0.18" rpy="0 0 0"/>
+    </pole>
+
+  <!-- add 3 platforms as ring 
+    <platform name="platform1" parent="pole_link">
+        <origin xyz="0.0288 0.0 0.19" rpy="0 0 0"/>
     </platform>
 
-  <!-- add kinect -->
-    <kinect name="camera" parent="base_link">
-        <origin xyz="0.1 0.0 0.68"/>
-    </kinect>
+    <platform name="platform2" parent="pole_link">
+        <origin xyz="-0.0144 0.0249 0.19" rpy="0 0 ${2*M_PI/3}"/>
+    </platform>
+
+    <platform name="platform3" parent="pole_link">
+        <origin xyz="-0.0144 -0.0249 0.19" rpy="0 0 ${4*M_PI/3}"/>
+    </platform>-->
+
+  <!-- add platform1--> 
+    <platform name="platform1" parent="pole_link">
+        <origin xyz="0.0288 0.0 0.19" rpy="0 0 0"/>
+    </platform>
+  <!-- add platform2--> 
+    <platform name="platform2" parent="pole_link">
+        <origin xyz="0.0288 0.0 0.39" rpy="0 0 0"/>
+    </platform>
+  <!-- add platform3--> 
+    <platform name="platform3" parent="pole_link">
+        <origin xyz="0.0288 0.0 0.59" rpy="0 0 0"/>
+    </platform>
 
   <!-- add hokuyo -->
-    <hokuyo name="laser" parent="base_link">
-        <origin xyz="0.09 0.0 0.31"/>
+    <hokuyo name="laser" parent="pole_link">
+        <origin xyz="0.06 0.0 0.08"/>
     </hokuyo>
 
   <!-- add lzru901 -->
     <lzru901 name="laser_lzru901" parent="base_link">
-        <origin xyz="0.15 0.0 0.17"/>
+        <origin xyz="0.12 0.0 0.17"/>
     </lzru901>
 
   <!-- add webcam -->
-    <webcam name="webcam" parent="base_link">
-        <origin xyz="0.20 0.0 0.38"/>
+    <webcam name="webcam" parent="platform1_link">
+        <origin xyz="0.16 0.0 0.01"/>
     </webcam>
+
+  <!-- add kinect -->
+    <kinect name="camera" parent="platform2_link">
+        <origin xyz="0.07 0.0 0.08"/>
+    </kinect>
+
 </robot>

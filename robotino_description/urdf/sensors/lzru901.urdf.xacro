@@ -21,10 +21,11 @@
       <visual>
         <origin xyz="0 0 -${LZR_LENGTH/4}" rpy="0 0 0" />
         <geometry>
-          <!--<mesh
-filename="package://robotino_description/meshes/sensors/hokuyo.dae" scale="${M_SCALE} ${M_SCALE} ${M_SCALE}"/>-->
-	<cylinder radius="${LZR_RADIUS}" length="${LZR_LENGTH}" />
+	  <cylinder radius="${LZR_RADIUS}" length="${LZR_LENGTH}" />
         </geometry>
+	<material name="black">
+          <color rgba="0 0 0 1"/>
+      	</material>
       </visual>
       <collision>
         <origin xyz="0 0 -${LZR_LENGTH/4}" rpy="0 0 0" />
