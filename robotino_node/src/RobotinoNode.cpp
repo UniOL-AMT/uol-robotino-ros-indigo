@@ -49,6 +49,9 @@ void RobotinoNode::initModules()
     //north_star_.setComId( com_.id() );
 	omni_drive_.setComId( com_.id() );
 	power_management_.setComId( com_.id() );
+	
+	relay_array_.setComId( com_.id() );
+
 	omni_drive_.setMaxMin(max_linear_vel_, min_linear_vel_, max_angular_vel_, min_angular_vel_ );
 	com_.connectToServer( false );
 }

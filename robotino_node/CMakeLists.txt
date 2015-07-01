@@ -118,6 +118,7 @@ add_executable(
   src/ComROS.cpp
   src/DigitalInputArrayROS.cpp
   src/DigitalOutputArrayROS.cpp
+  src/RelayArrayROS.cpp
   src/DistanceSensorArrayROS.cpp
   src/ElectricalGripperROS.cpp
   src/EncoderInputROS.cpp
