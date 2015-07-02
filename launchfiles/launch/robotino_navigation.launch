@@ -22,7 +22,7 @@
   </node>
 
   <!-- react to bumper events -->
-  <node pkg="robotino_safety_node" type="robotino_bumper_node" name="robotino_bumper_node" output="screen" />
+  <node pkg="robotino_safety" type="robotino_bumper_node" name="robotino_bumper_node" output="screen" />
 
   <!-- Run rviz -->
   <!--<include file="$(find robotino_navigation)/launch/rviz.launch"/>-->
