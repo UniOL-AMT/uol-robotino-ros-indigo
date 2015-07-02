@@ -31,5 +31,5 @@
   <!--<include file="$(find robotino_safety)/launch/robotino_safety_node.launch"/>-->
 
   <!-- Robotino with only laser scanners-->
-  <include file="$(find launchfiles)/files/all_lasers.launch" />
+  <include file="$(find launchfiles)/launch/all_lasers.launch" />
 </launch>
