@@ -11,15 +11,18 @@
 
   <!--- Run move_base -->
   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
-    <rosparam file="$(find robotino_navigation)/config/costmap_common_params.yaml" command="load" ns="global_costmap" />
-    <rosparam file="$(find robotino_navigation)/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
-    <rosparam file="$(find robotino_navigation)/config/local_costmap_params.yaml" command="load" />
-    <rosparam file="$(find robotino_navigation)/config/global_costmap_params.yaml" command="load" />
-    <rosparam file="$(find robotino_navigation)/config/base_local_planner_params.yaml" command="load" />
+    <rosparam file="$(find launchfiles)/config/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find launchfiles)/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find launchfiles)/config/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find launchfiles)/config/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find launchfiles)/config/base_local_planner_params.yaml" command="load" />
     <param name="base_local_planner" value="robotino_local_planner/RobotinoLocalPlanner" />
     <param name="controller_frequency" value="15.0" />
     <!--<remap from="cmd_vel" to="robotino_cmd_vel" />-->
   </node>
+
+  <!-- react to bumper events -->
+  <node pkg="robotino_safety_node" type="robotino_bumper_node" name="robotino_bumper_node" output="screen" />
 
   <!-- Run rviz -->
   <!--<include file="$(find robotino_navigation)/launch/rviz.launch"/>-->

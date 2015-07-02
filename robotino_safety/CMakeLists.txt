@@ -126,6 +126,17 @@ target_link_libraries(
   ${catkin_LIBRARIES}
 )
 
+add_executable(
+  robotino_bumper_node
+  src/robotino_bumper_node.cpp)
+
+
+target_link_libraries(
+  robotino_bumper_node
+  ${REC_ROBOTINO_API2_LIBRARY}
+  ${catkin_LIBRARIES}
+)
+
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes
 # add_dependencies(robotino_safety_node robotino_safety_generate_messages_cpp)
