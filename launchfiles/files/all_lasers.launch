@@ -1,0 +1,7 @@
+<launch>
+  <include file="$(find launchfiles)/files/laser_ust10lx.launch" />
+  <include file="$(find launchfiles)/files/laser_lzru901.launch" />
+
+  <include file="$(find robotino_node)/launch/robotino_simple_node.launch" />
+
+</launch>
