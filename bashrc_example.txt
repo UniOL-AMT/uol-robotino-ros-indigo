@@ -13,11 +13,15 @@ export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:~/rosbuild_workspace/sandbox:~/catkin_
 #check for correct own ip!
 
 #local configuration:
-export ROS_MASTER_URI=http://127.0.0.1:11311 	#master
-export ROS_HOSTNAME=127.0.0.1			#own ip
+#export ROS_MASTER_URI=http://127.0.0.1:11311 	#master
+#export ROS_HOSTNAME=127.0.0.1			#own ip
 
-#remote configuration:
-#export ROS_MASTER_URI=http://172.26.1.1:11311
-#export ROS_HOSTNAME=172.26.1.128
+#internal master (recommended config on robotino)
+export ROS_MASTER_URI=http://172.26.1.1:11311	#own ip
+export ROS_HOSTNAME=172.26.1.1			#own ip
 
-export ROBOTINO_NAME=300252	#change to number code without dot
+#remote master configuration:
+#export ROS_MASTER_URI=http://172.26.1.XX:11311	#remote ip
+#export ROS_HOSTNAME=172.26.1.YY		#own ip
+
+export ROBOTINO_NAME=300252	#change to number code without dot (currently: 300235, 300252)
