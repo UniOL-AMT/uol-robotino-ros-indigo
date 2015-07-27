@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<robot name="robotino300235" xmlns:xacro="http://wiki.ros.org/xacro">
+  <xacro:include filename="$(find robotino_description3)/urdf/robotino_body.urdf.xacro"/>
+  <xacro:include filename="$(find robotino_description3)/urdf/robotino_parts.urdf.xacro"/>
+  <xacro:include filename="$(find robotino_description3)/urdf/sensors/kinect.urdf.xacro"/>
+  <xacro:include filename="$(find robotino_description3)/urdf/sensors/hokuyo.urdf.xacro"/>
+  <xacro:include filename="$(find robotino_description3)/urdf/sensors/camera.urdf.xacro"/>
+  <xacro:include filename="$(find robotino_description3)/urdf/sensors/lzru901.urdf.xacro"/>
+  <xacro:include filename="$(find robotino_description3)/urdf/sensors/kinectv2.urdf.xacro"/>
+
+  <robotino_body/>
+
+  <!-- add pole -->
+    <pole name="pole" parent="base_link">
+        <origin xyz="0.0 0.0 0.18" rpy="0 0 0"/>
+    </pole>
+
+  <!-- add 3 platforms as ring 
+    <platform name="platform1" parent="pole_link">
+        <origin xyz="0.0288 0.0 0.19" rpy="0 0 0"/>
+    </platform>
+
+    <platform name="platform2" parent="pole_link">
+        <origin xyz="-0.0144 0.0249 0.19" rpy="0 0 ${2*M_PI/3}"/>
+    </platform>
+
+    <platform name="platform3" parent="pole_link">
+        <origin xyz="-0.0144 -0.0249 0.19" rpy="0 0 ${4*M_PI/3}"/>
+    </platform>-->
+
+  <!-- add platform1--> 
+    <platform name="platform1" parent="pole_link">
+        <origin xyz="0.0288 0.0 0.19" rpy="0 0 0"/>
+    </platform>
+  <!-- add platform2--> 
+    <platform name="platform2" parent="pole_link">
+        <origin xyz="0.0288 0.0 0.39" rpy="0 0 0"/>
+    </platform>
+  <!-- add platform3--> 
+    <platform name="platform3" parent="pole_link">
+        <origin xyz="0.0288 0.0 0.59" rpy="0 0 0"/>
+    </platform>
+
+  <!-- add hokuyo -->
+    <hokuyo name="laser" parent="pole_link">
+        <origin xyz="0.06 0.0 0.08"/>
+    </hokuyo>
+
+  <!-- add lzru901 -->
+    <lzru901 name="laser_lzru901" parent="base_link">
+        <origin xyz="0.12 0.0 0.17"/>
+    </lzru901>
+
+  <!-- add webcam -->
+    <webcam name="webcam" parent="platform1_link">
+        <origin xyz="0.16 0.0 0.01"/>
+    </webcam>
+
+  <!-- add kinect -->
+    <kinect name="camera" parent="platform2_link">
+        <origin xyz="0.07 0.0 0.08"/>
+    </kinect>
+
+  <!-- add kinect v2 -->
+    <kinectv2 name="kinectv2" parent="platform3_link">
+        <origin xyz="0.07 0.0 0.04"/>
+    </kinectv2>
+
+</robot>

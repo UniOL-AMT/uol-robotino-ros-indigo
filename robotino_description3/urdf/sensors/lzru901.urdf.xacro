@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<robot name="sensor_lzru901" xmlns:xacro="http://wiki.ros.org/xacro">
+  <xacro:property name="M_PI" value="3.14159"/>
+  <xacro:property name="M_SCALE" value="0.01"/>
+  <xacro:property name="LZR_RADIUS" value="0.06"/>
+  <xacro:property name="LZR_LENGTH" value="0.08"/>
+  <xacro:macro name="lzru901" params="parent name *origin">
+    <joint name="${name}_joint" type="fixed">
+      <insert_block name="origin" />
+      <parent link="${parent}"/>
+      <child link="${name}_link" />
+    </joint>
+    <link name="${name}_link">
+      <inertial>
+        <mass value="0.00001" />
+        <origin xyz="0 0 0" />
+        <inertia ixx="1.0" ixy="0.0" ixz="0.0"
+          iyy="1.0" iyz="0.0"
+          izz="1.0" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 -${LZR_LENGTH/4}" rpy="0 0 0" />
+        <geometry>
+	  <cylinder radius="${LZR_RADIUS}" length="${LZR_LENGTH}" />
+        </geometry>
+	<material name="black">
+          <color rgba="0 0 0 1"/>
+      	</material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 -${LZR_LENGTH/4}" rpy="0 0 0" />
+        <geometry>
+          <cylinder radius="${LZR_RADIUS}" length="${LZR_LENGTH}" />
+        </geometry>
+      </collision>
+    </link>
+  </xacro:macro>
+</robot>

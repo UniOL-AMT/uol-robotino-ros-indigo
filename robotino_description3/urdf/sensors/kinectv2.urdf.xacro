@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<robot name="sensor_kinect_v2" xmlns:xacro="http://ros.org/wiki/xacro">
+  <!--<xacro:include filename="$(find robotino_description3)/urdf/sensors/3dsensor_gazebo.urdf.xacro"/>-->
+  <xacro:property name="KINECTV2_LENGTH" value="0.064"/>
+  <xacro:property name="KINECTV2_WIDTH" value="0.25"/>
+  <xacro:property name="KINECTV2_HEIGHT" value="0.063"/>
+  <xacro:macro name="kinectv2" params="parent name *origin">
+    <joint name="${name}_joint" type="fixed">
+      <insert_block name="origin"/>
+      <parent link="${parent}"/>
+      <child link="${name}_link"/>
+    </joint>
+    <link name="${name}_link">
+      <inertial>
+        <mass value="0.00001" />
+        <origin xyz="0 0 0" />
+        <inertia ixx="1.0" ixy="0.0" ixz="0.0"
+          iyy="1.0" iyz="0.0"
+          izz="1.0" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 -${KINECTV2_HEIGHT/2}" rpy="0 0 0"/>
+        <!-- <origin xyz="0 0 0" rpy="0 0 0" /> -->
+        <geometry>
+          <mesh filename="package://robotino_description3/meshes/sensors/KinectV2.dae"/>
+          <!-- <box size="${KINECTV2_LENGTH} ${KINECTV2_WIDTH} ${KINECTV2_HEIGHT}"/> -->
+        </geometry>
+        <!-- <material name="${color}"/> -->
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <box size="${KINECTV2_LENGTH} ${KINECTV2_WIDTH} ${KINECTV2_HEIGHT}"/>
+        </geometry>
+      </collision>
+    </link>
+    <!-- add simulation of 3d sensor -->
+    <!-- <sim_3dsensor/> -->
+  </xacro:macro>
+</robot>

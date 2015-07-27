@@ -1,0 +1,23 @@
+export EDITOR=nano
+
+source /opt/ros/indigo/setup.bash
+source ~/rosbuild_workspace/setup.bash
+source ~/catkin_ws/devel/setup.bash
+
+export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:~/rosbuild_workspace/sandbox:~/catkin_ws/src
+
+#export CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH:/usr/local/robotino/api2/cmake
+#export PATH=$PATH:/usr/local/robotino/api2/include
+#export PATH=$PATH:/usr/local/robotino/api2/include/rec/robotino/api2
+
+#check for correct own ip!
+
+#local configuration:
+export ROS_MASTER_URI=http://127.0.0.1:11311 	#master
+export ROS_HOSTNAME=127.0.0.1			#own ip
+
+#remote configuration:
+#export ROS_MASTER_URI=http://172.26.1.1:11311
+#export ROS_HOSTNAME=172.26.1.128
+
+export ROBOTINO_NAME=300252	#change to number code without dot
