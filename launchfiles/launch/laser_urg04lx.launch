@@ -1,0 +1,8 @@
+<launch>
+
+  <node pkg="urg_node" type="urg_node" name="ust10lxlaser">
+    <param name="serial_port" value="/dev/scanner1"/>
+    <param name="frame_id" value="/laser_link" />
+  </node>
+
+</launch>
