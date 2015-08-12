@@ -1,0 +1,11 @@
+<launch>
+  <node name="slam_gmapping" pkg="gmapping" type="slam_gmapping">
+    <param name="xmin" value="-20" />
+    <param name="xmax" value="20" />
+    <param name="ymin" value="-20" />
+    <param name="ymax" value="20" />
+  </node>
+  <!-- Run rviz -->
+      <param name="robot_description" command="$(find xacro)/xacro '$(find robotino_description3)/urdf/robotino$(env ROBOTINO_NAME).urdf.xacro'" />
+    <node pkg="rviz" type="rviz" name="rviz"/>
+</launch>

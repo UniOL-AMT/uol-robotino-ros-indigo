@@ -1,0 +1,38 @@
+<launch>
+  <arg name="map_file" value="$(find launchfiles)/maps/techlab01.yaml" />
+
+  <!-- Run the map server -->
+  <!-- Please check the file path for map files (yaml and pgm) before execution -->
+  <!--<arg name="map_file" default="$(find robotino_navigation)/maps/sample.yaml" />-->
+  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)"/>
+
+  <!--- Run AMCL -->
+  <include file="$(find amcl)/examples/amcl_omni.launch" />
+
+  <!--- Run move_base -->
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <rosparam file="$(find launchfiles)/config/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find launchfiles)/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find launchfiles)/config/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find launchfiles)/config/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find launchfiles)/config/base_local_planner_params.yaml" command="load" />
+    <param name="base_local_planner" value="base_local_planner/TrajectoryPlannerROS" />
+    <param name="controller_frequency" value="15.0" />
+    <!--<remap from="cmd_vel" to="robotino_cmd_vel" />-->
+  </node>
+
+  <!-- react to bumper events -->
+  <node pkg="robotino_safety" type="robotino_bumper_node" name="robotino_bumper_node" output="screen" />
+
+  <!-- Run rviz -->
+  <!--<include file="$(find robotino_navigation)/launch/rviz.launch"/>-->
+
+  <!-- Run robotino_safety_node -->
+  <!--<include file="$(find robotino_safety)/launch/robotino_safety_node.launch"/>-->
+
+  <!-- Robotino with only laser scanners-->
+  <!--<include file="$(find launchfiles)/launch/all_lasers.launch" />-->
+
+  <!-- Run Robotino full 
+  <include file="$(find launchfiles)/launch/robotino$(env ROBOTINO_NAME).launch" />-->
+</launch>
