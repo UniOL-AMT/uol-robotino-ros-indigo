@@ -100,6 +100,11 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
+include_directories(
+  include
+  ${catkin_INCLUDE_DIRS}
+  /usr/local/robotino/api2
+)
 ## Declare a cpp library
 # add_library(robotino_node
 #   src/${PROJECT_NAME}/robotino_node.cpp
