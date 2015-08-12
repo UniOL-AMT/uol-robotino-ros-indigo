@@ -22,7 +22,7 @@ void DigitalInputArrayROS::setTimeStamp(ros::Time stamp)
 	stamp_ = stamp;
 }
 
-void DigitalInputArrayROS::valuesChangedEvent( const bool* values, unsigned int size )
+void DigitalInputArrayROS::valuesChangedEvent( const int* values, unsigned int size )
 {
 	// Build the DigitalReadings msg
 	digital_msg_.stamp = stamp_;
@@ -30,8 +30,10 @@ void DigitalInputArrayROS::valuesChangedEvent( const bool* values, unsigned int 
 
 	if( size > 0 )
 	{
-		memcpy( digital_msg_.values.data(), values, size * sizeof( bool ) );
-
+        for( unsigned int idx = 0; idx < size; ++idx )
+        {
+            digital_msg_.values[idx] = (bool)values[idx];
+        }
 		// Publish the msg
 		digital_pub_.publish( digital_msg_ );
 	}
