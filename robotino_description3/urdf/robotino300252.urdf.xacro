@@ -28,10 +28,10 @@
         <origin xyz="-0.0144 -0.0249 0.19" rpy="0 0 ${4*M_PI/3}"/>
     </platform>-->
 
-  <!-- add platform1--> 
+  <!-- add platform1
     <platform name="platform1" parent="pole_link">
         <origin xyz="0.0288 0.0 0.18" rpy="0 0 0"/>
-    </platform>
+    </platform>--> 
   <!-- add platform2--> 
     <platform name="platform2" parent="pole_link">
         <origin xyz="0.0288 0.0 0.59" rpy="0 0 0"/>
@@ -42,8 +42,8 @@
     </platform>-->
 
   <!-- add hokuyo -->
-    <hokuyo name="laser" parent="platform1_link">
-        <origin xyz="0.11 0.0 0.0"/>
+    <hokuyo name="laser" parent="pole_link">
+        <origin xyz="0.07 0.0 0.12"/>
     </hokuyo>
 
   <!-- add webcam -->
