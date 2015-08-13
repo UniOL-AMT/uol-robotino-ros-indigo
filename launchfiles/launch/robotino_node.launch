@@ -21,8 +21,9 @@
 		<param name="publish_frequency" type="double" value="20.0" />
 	</node>
 
+	<!-- scheint mapping per Festo Tools zu erlauben 
   	<node pkg="robotino_node" type="robotino_mapping_node" name="robotino_mapping_node" output="screen">
         	<param name="hostname" value="$(arg hostname)" />
-  	</node>
+  	</node> -->
 
 </launch>
