@@ -1,0 +1,74 @@
+<launch>
+
+  <!-- launch all connected sensors -->
+  <include file="$(find launchfiles)/launch/kinect.launch" />
+  <include file="$(find launchfiles)/launch/laser_urg04lx.launch" />
+
+  <!-- launch robot node -->
+  <include file="$(find launchfiles)/launch/robotino_node.launch" />
+
+  <!--- Navigation launch -->
+  <include file="$(find launchfiles)/launch/test_robotino_navigation.launch" />
+
+  <!--- Kinect person detection -->
+  <node pkg="openni_tracker" type="openni_tracker" name="openni_tracker">
+	<param name="camera_frame_id" value="/camera_depth_frame"/>
+  </node>
+
+  <!--- Laser Person Detection -->
+  <node pkg="person_detection" type="person_detection" name="person_detection" output="screen">
+	<param name="scanTopic" value="/scan"/>
+  </node>
+  
+  <!--- Kinect person preparation -->
+  <node pkg="openni_person_preparation" type="openni_person_preparation" name="openni_person_preparation">
+	<param name="openni_header_frame" value="/camera_depth_frame"/>
+  </node>
+  
+  <!--- Person validator -->
+  <node pkg="person_validator" type="person_validator" name="person_validator">
+  </node>
+  
+  <!--- Visualizer -->
+  <!---<node pkg="person_visualizer" type="person_visualizer" name="person_visualizer_openni">
+    <param name="input_topic" value="/openni_person_preparation/persons"/>
+  	<param name="person_marker_namespace" value="person_openni"/>
+  	<param name="text_marker_namespace" value="person_info_openni"/>
+  	<param name="person_marker_color_r" value="0" type="double"/>
+  	<param name="person_marker_color_g" value="0" type="double"/>
+ 	<param name="person_marker_color_b" value="1.0" type="double"/>
+  </node>
+  <node pkg="person_visualizer" type="person_visualizer" name="person_visualizer_laser">
+    <param name="input_topic" value="/person_detection/msgs/persons"/>
+  	<param name="person_marker_namespace" value="person_laser"/>
+  	<param name="text_marker_namespace" value="person_info_laser"/>
+  	<param name="person_marker_color_r" value="0" type="double"/>
+  	<param name="person_marker_color_g" value="1.0" type="double"/>
+ 	<param name="person_marker_color_b" value="1.0" type="double"/>
+  </node>-->
+  <node pkg="person_visualizer" type="person_visualizer" name="person_visualizer_validator">
+    <param name="input_topic" value="/person_validator/persons"/>
+  	<param name="person_marker_namespace" value="person_laser"/>
+  	<param name="text_marker_namespace" value="person_info_laser"/>
+  	<param name="person_marker_color_r" value="0" type="double"/>
+  	<param name="person_marker_color_g" value="1.0" type="double"/>
+ 	<param name="person_marker_color_b" value="0" type="double"/>
+  </node>
+
+  <!--- Person Movement Tracker 
+  <node pkg="person_movement_tracker" type="person_movement_tracker" name="person_movement_tracker">
+  	<param name="database_file" value="/home/turtlebot/database/persons.db" />
+  </node> -->
+  
+  <!--- Person Observation 
+  <node pkg="person_observation" type="person_observation" name="person_observation">
+  	<param name="database_file" value="/home/turtlebot/database/persons.db" />
+  </node> -->  
+
+  <!--- Person Follower //not available atm
+  <node pkg="person_follower" type="person_follower" name="person_follower">
+  	<param name="database_file" value="/home/turtlebot/database/persons.db" />
+  	<param name="start_searching" value="true" /> 
+  </node>-->  
+
+</launch>
