@@ -1,0 +1,14 @@
+<launch>
+	<!-- launch all connected sensors -->
+  	<include file="$(find launchfiles)/launch/kinect.launch" />
+	<include file="$(find launchfiles)/launch/laser_urg04lx.launch" />
+
+	<!-- launch robot node -->
+  	<include file="$(find launchfiles)/launch/robotino_node.launch" />
+
+  	<!--- Kinect person detection -->
+  	<node pkg="openni_tracker" type="openni_tracker" name="openni_tracker">
+		<param name="camera_frame_id" value="/camera_depth_frame"/>
+  	</node>
+
+</launch>
