@@ -1,7 +1,7 @@
 controller_frequency: 5.0
 
 RobotinoLocalPlanner:
-  max_linear_vel: 1.0
+  max_linear_vel: 0.8
   mix_linear_vel: 0.1
   max_rotation_vel: 1.0
   min_rotation_vel: 0.3
@@ -14,9 +14,9 @@ RobotinoLocalPlanner:
   
 TrajectoryPlannerROS:
 #from turtlebot
-  max_vel_x: 0.50
+  max_vel_x: 0.40
   min_vel_x: 0.10
-  max_rotational_vel: 1.5
+  max_rotational_vel: 1.2
   min_in_place_rotational_vel: 1.0
   acc_lim_th: 0.75
   acc_lim_x: 0.50

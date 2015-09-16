@@ -18,15 +18,16 @@
   <!--- Laser Person Detection -->
   <node pkg="person_detection" type="person_detection" name="person_detection" output="screen">
 	<param name="scanTopic" value="/scan"/>
+	<param name="poseFrameRobot" value="/laser_link"/>
   </node>
   
   <!--- Kinect person preparation -->
-  <node pkg="openni_person_preparation" type="openni_person_preparation" name="openni_person_preparation">
+  <node pkg="openni_person_preparation" type="openni_person_preparation" name="openni_person_preparation" output="screen">
 	<param name="openni_header_frame" value="/camera_depth_frame"/>
   </node>
   
   <!--- Person validator -->
-  <node pkg="person_validator" type="person_validator" name="person_validator">
+  <node pkg="person_validator" type="person_validator" name="person_validator" output="screen">
   </node>
   
   <!--- Visualizer -->

@@ -6,9 +6,19 @@
 	<!-- launch robot node -->
   	<include file="$(find launchfiles)/launch/robotino_node.launch" />
 
+	<!--- Navigation launch -->
+	<include file="$(find launchfiles)/launch/test_robotino_navigation.launch" />
+
   	<!--- Kinect person detection -->
   	<node pkg="openni_tracker" type="openni_tracker" name="openni_tracker">
 		<param name="camera_frame_id" value="/camera_depth_frame"/>
   	</node>
+
+ 
+	<!--- Laser Person Detection -->
+	<node pkg="person_detection" type="person_detection" name="person_detection" output="screen">
+		<param name="scanTopic" value="/scan"/>
+		<param name="poseFrameRobot" value="/laser_link"/>
+	</node>
 
 </launch>

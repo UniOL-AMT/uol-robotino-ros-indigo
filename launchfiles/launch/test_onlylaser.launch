@@ -1,0 +1,7 @@
+<launch>
+
+	<include file="$(find launchfiles)/launch/laser_urg04lx.launch" />
+
+	<!-- launch robot node -->
+  	<include file="$(find launchfiles)/launch/robotino_node.launch" />
+</launch>
