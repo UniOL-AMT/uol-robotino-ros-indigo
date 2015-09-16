@@ -24,6 +24,8 @@
   <!--- Kinect person preparation -->
   <node pkg="openni_person_preparation" type="openni_person_preparation" name="openni_person_preparation" output="screen">
 	<param name="openni_header_frame" value="/camera_depth_frame"/>
+	<param name="left_foot_frame" value="left_foot_"/>
+	<param name="right_foot_frame" value="right_foot_"/>
   </node>
   
   <!--- Person validator -->

@@ -1,0 +1,64 @@
+<launch>
+  <arg name="map_file" value="$(find launchfiles)/maps/techlab02.yaml" />
+
+  <!-- launch all connected sensors -->
+  <include file="$(find launchfiles)/launch/kinect.launch" />
+  <include file="$(find launchfiles)/launch/laser_urg04lx.launch" />
+
+  <!-- launch robot node -->
+  <include file="$(find launchfiles)/launch/robotino_node.launch" />
+
+  <!-- Run the map server -->
+  <!-- Please check the file path for map files (yaml and pgm) before execution -->
+  <!--<arg name="map_file" default="$(find robotino_navigation)/maps/sample.yaml" />-->
+  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)"/>
+
+  <!--- Run AMCL -->
+  <!--<include file="$(find amcl)/examples/amcl_omni.launch" />-->
+  <include file="$(find launchfiles)/config/new_amcl.launch.xml" />
+
+  <!--- Run move_base -->
+  <arg name="odom_frame_id"   default="odom"/>
+  <arg name="base_frame_id"   default="base_link"/>
+  <arg name="global_frame_id" default="map"/>
+  <arg name="odom_topic" default="odom" />
+  <arg name="laser_topic" default="scan" />
+
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <rosparam file="$(find launchfiles)/config/new_costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find launchfiles)/config/new_costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find launchfiles)/config/new_local_costmap_params.yaml" command="load" />   
+    <rosparam file="$(find launchfiles)/config/new_global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find launchfiles)/config/new_dwa_local_planner_params.yaml" command="load" />
+    <rosparam file="$(find launchfiles)/config/new_move_base_params.yaml" command="load" />
+    <rosparam file="$(find launchfiles)/config/new_global_planner_params.yaml" command="load" />
+    <rosparam file="$(find launchfiles)/config/new_navfn_global_planner_params.yaml" command="load" />
+    <!--<param name="controller_frequency" value="5.0" />-->
+    <!--<remap from="cmd_vel" to="robotino_cmd_vel" />-->
+
+    <!-- reset frame_id parameters using user input data -->
+    <param name="global_costmap/global_frame" value="$(arg global_frame_id)"/>
+    <param name="global_costmap/robot_base_frame" value="$(arg base_frame_id)"/>
+    <param name="local_costmap/global_frame" value="$(arg odom_frame_id)"/>
+    <param name="local_costmap/robot_base_frame" value="$(arg base_frame_id)"/>
+    <param name="DWAPlannerROS/global_frame_id" value="$(arg odom_frame_id)"/>
+
+    <remap from="odom" to="$(arg odom_topic)"/>
+    <remap from="scan" to="$(arg laser_topic)"/>
+  </node>
+
+  <!-- react to bumper events -->
+  <node pkg="robotino_safety" type="robotino_bumper_node" name="robotino_bumper_node" output="screen" />
+
+  <!-- Run rviz -->
+  <!--<include file="$(find robotino_navigation)/launch/rviz.launch"/>-->
+
+  <!-- Run robotino_safety_node -->
+  <!--<include file="$(find robotino_safety)/launch/robotino_safety_node.launch"/>-->
+
+  <!-- Robotino with only laser scanners-->
+  <!--<include file="$(find launchfiles)/launch/all_lasers.launch" />-->
+
+  <!-- Run Robotino full 
+  <include file="$(find launchfiles)/launch/robotino$(env ROBOTINO_NAME).launch" />-->
+</launch>
