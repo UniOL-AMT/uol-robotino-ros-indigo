@@ -13,7 +13,6 @@ find_package(catkin REQUIRED COMPONENTS
     robotino_msgs
     std_msgs
     tf
-    message_generation
 )
 
 ## System dependencies are found with CMake's conventions
@@ -57,10 +56,11 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate services in the 'srv' folder
- add_service_files(
-   FILES
-   MoveRobotino.srv
- )
+# add_service_files(
+#   FILES
+#   Service1.srv
+#   Service2.srv
+# )
 
 ## Generate actions in the 'action' folder
 add_action_files(
@@ -110,17 +110,6 @@ include_directories(
 
 ## Declare a cpp executable
 # add_executable(robotino_local_move_node src/robotino_local_move_node.cpp)
-
-add_executable(
-    robotino_local_move_service_node
-    src/robotino_local_move_service_node.cpp
-    src/RobotinoLocalMoveClient.cpp)
-
-target_link_libraries(robotino_local_move_service_node
-    ${catkin_LIBRARIES}
-)
-add_dependencies(robotino_local_move_service_node robotino_local_move_gencpp)
-
 add_executable(
     robotino_local_move_server_node
     src/robotino_local_move_server_node.cpp
