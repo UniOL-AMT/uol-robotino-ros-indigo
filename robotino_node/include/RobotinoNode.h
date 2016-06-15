@@ -53,14 +53,14 @@ private:
 
 	AnalogInputArrayROS analog_input_array_;
 	BumperROS bumper_;
-	CompactBHAROS compact_bha_;
+//	CompactBHAROS compact_bha_;
 	ComROS com_;
 	DigitalInputArrayROS digital_input_array_;
 	DigitalOutputArrayROS digital_output_array_;
 	DistanceSensorArrayROS distance_sensor_array_;
-	ElectricalGripperROS electrical_gripper_;
+//	ElectricalGripperROS electrical_gripper_;
 	EncoderInputROS encoder_input_;
-	GrapplerROS grappler_;
+//	GrapplerROS grappler_;
 	MotorArrayROS motor_array_;
 	//NorthStarROS north_star_;
 	OmniDriveROS omni_drive_;

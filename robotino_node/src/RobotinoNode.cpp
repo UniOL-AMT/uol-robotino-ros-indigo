@@ -38,13 +38,13 @@ void RobotinoNode::initModules()
 	// Set the ComIds
 	analog_input_array_.setComId( com_.id() );
 	bumper_.setComId( com_.id() );
-	compact_bha_.setComId( com_.id() );
+//	compact_bha_.setComId( com_.id() );
 	digital_input_array_.setComId( com_.id() );
 	digital_output_array_.setComId( com_.id() );
 	distance_sensor_array_.setComId( com_.id() );
-	electrical_gripper_.setComId( com_.id() );
+//	electrical_gripper_.setComId( com_.id() );
 	encoder_input_.setComId( com_.id() );
-	grappler_.setComId( com_.id() );
+//	grappler_.setComId( com_.id() );
 	motor_array_.setComId( com_.id() );
     //north_star_.setComId( com_.id() );
 	omni_drive_.setComId( com_.id() );
@@ -116,12 +116,12 @@ bool RobotinoNode::spin()
 		curr_time_ = ros::Time::now();
 
 		analog_input_array_.setTimeStamp(curr_time_);
-		compact_bha_.setTimeStamp(curr_time_);
+//		compact_bha_.setTimeStamp(curr_time_);
 		digital_input_array_.setTimeStamp(curr_time_);
 		distance_sensor_array_.setTimeStamp(curr_time_);
-		electrical_gripper_.setTimeStamp(curr_time_);
+//		electrical_gripper_.setTimeStamp(curr_time_);
 		encoder_input_.setTimeStamp(curr_time_);
-		grappler_.setTimeStamp(curr_time_);
+//		grappler_.setTimeStamp(curr_time_);
 		motor_array_.setTimeStamp(curr_time_);
         //north_star_.setTimeStamp(curr_time_);
 		power_management_.setTimeStamp(curr_time_);

@@ -119,18 +119,18 @@ add_executable(
   src/AnalogInputArrayROS.cpp
   src/BumperROS.cpp
   src/CameraROS.cpp
-  src/CompactBHAROS.cpp
+#  src/CompactBHAROS.cpp
   src/ComROS.cpp
   src/DigitalInputArrayROS.cpp
   src/DigitalOutputArrayROS.cpp
   src/RelayArrayROS.cpp
   src/DistanceSensorArrayROS.cpp
-  src/ElectricalGripperROS.cpp
+#  src/ElectricalGripperROS.cpp
   src/EncoderInputROS.cpp
-  src/GrapplerROS.cpp
-  src/LaserRangeFinderROS.cpp
+#  src/GrapplerROS.cpp
+#  src/LaserRangeFinderROS.cpp
   src/MotorArrayROS.cpp
-  src/NorthStarROS.cpp
+#  src/NorthStarROS.cpp
   src/OdometryROS.cpp
   src/OmniDriveROS.cpp
   src/PowerManagementROS.cpp
@@ -158,33 +158,33 @@ target_link_libraries(
   ${catkin_LIBRARIES}
 )
 
-add_executable(
-  robotino_laserrangefinder_node
-  src/robotino_laserrangefinder_node.cpp
-  src/ComROS.cpp
-  src/LaserRangeFinderROS.cpp
-  src/RobotinoLaserRangeFinderNode.cpp
-)
+#add_executable(
+#  robotino_laserrangefinder_node
+#  src/robotino_laserrangefinder_node.cpp
+#  src/ComROS.cpp
+#  src/LaserRangeFinderROS.cpp
+#  src/RobotinoLaserRangeFinderNode.cpp
+#)
 
-target_link_libraries(
-  robotino_laserrangefinder_node
-  ${REC_ROBOTINO_API2_LIBRARY}
-  ${catkin_LIBRARIES}
-)
+#target_link_libraries(
+#  robotino_laserrangefinder_node
+#  ${REC_ROBOTINO_API2_LIBRARY}
+#  ${catkin_LIBRARIES}
+#)
 
-add_executable(
-  robotino_camera_node
-  src/robotino_camera_node.cpp
-  src/ComROS.cpp
-  src/CameraROS.cpp
-  src/RobotinoCameraNode.cpp
-)
+#add_executable(
+#  robotino_camera_node
+#  src/robotino_camera_node.cpp
+#  src/ComROS.cpp
+#  src/CameraROS.cpp
+#  src/RobotinoCameraNode.cpp
+#)
 
-target_link_libraries(
-  robotino_camera_node
-  ${REC_ROBOTINO_API2_LIBRARY}
-  ${catkin_LIBRARIES}
-)
+#target_link_libraries(
+#  robotino_camera_node
+#  ${REC_ROBOTINO_API2_LIBRARY}
+#  ${catkin_LIBRARIES}
+#)
 
 #add_executable(
 #  robotino_mapping_node
